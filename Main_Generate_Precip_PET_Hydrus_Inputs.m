@@ -81,3 +81,5 @@ Force(:,5)=Rain(:,3)*Tratio;    %%%% Transpiration (mm/day), will be a sink term
 %%%% Check to see if rain and ET are close. 
 Totrain=sum(Rain(:,2));
 TotET=sum(Rain(:,3));
+
+writematrix(Force, 'input.txt')
