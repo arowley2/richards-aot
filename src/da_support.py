@@ -32,19 +32,8 @@ def get_actual(t, model_time, h_arr):
 
 def get_aot_params(dt, i=-1, j=-1, norm_diff = 1):
 
-    collect_time = 60                                                # How often (in min) data is observed (can not be smaller than iterating timestep)
-    times = [60, 30, 5, 1]
-    if (i >= 0):
-        collect_time = times[i]
-    
-    num_nodes = 7                                                   # How many nodes are observed observed (can not be more than nx+1, must be positive integer)
-    nodes = [5, 7, 10, 12]
-    if (j >= 0):
-        num_nodes = nodes[j]
-
-    # crns_collect_time = 60
-    # remote_collect_time = 1440
-
+    collect_time = 60                                               # How often (in min) data is observed (can not be smaller than iterating timestep)
+    num_nodes = 5                                                   # How many nodes are observed observed (can not be more than nx+1, must be positive integer)
     mu = (1.8/dt)/20
 
     return mu, collect_time, num_nodes
@@ -253,3 +242,4 @@ def feedback(h_m, h_m_dA, params, V, nx, min_x, max_x, num_nodes, remote_bool=Fa
 
 
     return Ih_theta, Ih_theta_dA
+
