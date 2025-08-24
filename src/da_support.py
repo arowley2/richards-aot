@@ -233,8 +233,8 @@ def Ih_zeros(theta, V, num_nodes, min_x, nx):
 # Function for returning interpolated vectors - May use to alter type of interpolation ================================================================
 def feedback(h_m, h_m_dA, params, V, nx, min_x, max_x, num_nodes, remote_bool=False, crns_bool=False):
 
-    Ih_theta_dA = Ih_piecewise_uni(theta(h_m_dA, V, nx), V, num_nodes, min_x, nx)                                   # Observation type: nodes at uniform depths, linear interpolation between nodes
-    Ih_theta = Ih_piecewise_uni(theta(h_m, V, nx), V, num_nodes, min_x, nx)
+    # Ih_theta_dA = Ih_piecewise_uni(theta(h_m_dA, V, nx), V, num_nodes, min_x, nx)                                   # Observation type: nodes at uniform depths, linear interpolation between nodes
+    # Ih_theta = Ih_piecewise_uni(theta(h_m, V, nx), V, num_nodes, min_x, nx)
 
     # Ih_theta_dA, _ = Ih_piecewise_spec(theta(h_m_dA, V, nx), V, num_nodes, min_x, nx)                             # Observation type: nodes at specified depths, linear interpolation between nodes
     # Ih_theta, _ = Ih_piecewise_spec(theta(h_m, V, nx), V, num_nodes, min_x, nx)
@@ -242,13 +242,14 @@ def feedback(h_m, h_m_dA, params, V, nx, min_x, max_x, num_nodes, remote_bool=Fa
     # Ih_theta_dA = Ih_zeros(theta(h_m_dA, V, nx), V, num_nodes, min_x, nx)                                         # Observation type: nodes at uniform depths, zeros filled in between nodes
     # Ih_theta = Ih_zeros(theta(h_m, V, nx), V, num_nodes, min_x, nx)
 
-    # Ih_theta_dA = Ih_combined(theta(h_m_dA, V, nx), V, num_nodes, crns_bool, remote_bool, nx, min_x, max_x)       # Observation type: combination of nodes and CRNS and/or satellite (determined by values passed by main.py)
-    # Ih_theta = Ih_combined(theta(h_m, V, nx), V, num_nodes, crns_bool, remote_bool, nx, min_x, max_x)
+    Ih_theta_dA = Ih_combined(theta(h_m_dA, V, nx), V, num_nodes, crns_bool, remote_bool, nx, min_x, max_x)       # Observation type: combination of nodes and CRNS and/or satellite (determined by values passed by main.py)
+    Ih_theta = Ih_combined(theta(h_m, V, nx), V, num_nodes, crns_bool, remote_bool, nx, min_x, max_x)
 
     # Ih_theta_dA = Ih_CRNS(theta(h_m_dA, V, nx), V, nx, min_x, max_x)                                              # Observation type: CRNS (integrated over top 30 cm) data, zeros elsewhere
     # Ih_theta = Ih_CRNS(theta(h_m, V, nx), V, nx, min_x, max_x)
     
     # Ih_theta_dA = Ih_Remote(theta(h_m_dA, V, nx), V, nx, min_x, max_x)                                            # Observation type: Remote (integrated over top 5 cm) data, zeros elsewhere
     # Ih_theta = Ih_Remote(theta(h_m, V, nx), V, nx, min_x, max_x)
+
 
     return Ih_theta, Ih_theta_dA
